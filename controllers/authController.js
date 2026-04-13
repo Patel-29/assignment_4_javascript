@@ -1,9 +1,12 @@
-const passport = require('passport');
-exports.geroLogin = (req, res) => {
-    res.render("forms/lo-in-form")
+const passport = require("passport");
+
+exports.getLogin = (req, res) => {
+    res.render("forms/log-in-form")
 };
-exports.postLogin = passport.authenticate('local', {
-        successRedirect: "/",
+
+exports.postLogin = passport.authenticate("local", {
+
+    successRedirect: "/",
     failureRedirect: "/log-in",
     failureFlash: true,
 });
@@ -17,3 +20,4 @@ exports.getLogout = (req, res, next) => {
         res.redirect("/");
     });
 };
+

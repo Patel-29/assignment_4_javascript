@@ -1,4 +1,4 @@
-const pool = require("../db/pool.js");
+const pool = require("./pool.js");
 
 exports.createUser = async (
     first_name, 
