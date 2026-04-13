@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<main class="messages-container">
+    <h1>Messages</h1>
+
+    <% if (user) { %>
+    <div class="actions">
+      <a href="/messages/new" class="btn-primary">+ New Message</a>
+    </div>
+    <% } %>
+
+  <% if (messages && messages.length > 0) { %>
+    <div class="messages-list">
+      <% messages.forEach(message => { %>
+        <div class="message-card">
+          <h2 class="message-title"><%= message.title %></h2>
+          <p class="message-body"><%= message.body %></p>
+
+          <hr>
+
+          <div class="message-meta">
+            <span>
+                Posted by:
+                <% if (user && user.is_member) { %>
+                  <%= message.first_name %> <%= message.last_name %>
+                <% } else { %>
+                  <em>Log in to see author</em>
+                <% } %>
+            </span>
+            <span><%= new Date(message.created_at).toLocaleString() %></span>
+          </div>
+
+          <% if (user && user.is_admin) { %>
+              <form action="/messages/<%= message.id %>/delete" method="POST">
+                <button type="submit" class="delete-btn">Delete Message</button>
+              </form>
+            <% } %>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p class="no-messages">No messages yet.</p>
+  <% } %>
+</main>
+
+<%- include('../partials/footer') %>

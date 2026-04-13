@@ -1,0 +1,19 @@
+<header class="site-header">
+  <nav class="nav-bar">
+    <a href="/">Home</a>
+    <% if (user) { %>
+      <% if (!user.is_member) { %>
+        <a href="/membership">Unlock Membership</a>
+      <% } %>
+
+      <% if (!user.is_admin) { %>
+        <a href="/admin">Unlock Admin Status</a>
+      <% } %>
+
+      <a href="/log-out">Log Out</a>
+    <% } else { %>
+      <a href="/log-in">Log In</a>
+      <a href="/sign-up">Sign Up</a>
+    <% } %>
+  </nav>
+</header>

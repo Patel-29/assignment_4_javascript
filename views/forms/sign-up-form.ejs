@@ -1,0 +1,68 @@
+<%- include('../partials/header') %>
+<%- include('../partials/nav') %>
+
+<main class="auth-container">
+  <div class="auth-card">
+    <h1>Become a Member</h1>
+
+    <% if (locals.errors && errors.length > 0) { %>
+      <ul class="errors">
+        <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <form action="/sign-up" method="POST" class="auth-form">
+      
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input 
+        type="text" 
+        id="first_name" 
+        name="first_name" 
+        value="<%= locals.previousData ? previousData.first_name : '' %>"
+        required>
+      </div>
+
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input 
+        type="text" 
+        id="last_name" 
+        name="last_name" 
+        value="<%= locals.previousData ? previousData.last_name : '' %>"
+        required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        value="<%= locals.previousData ? previousData.email : '' %>"
+        required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+      </div>
+
+      <button type="submit" class="btn-primary">Sign Up</button>
+    </form>
+
+    <p class="auth-footer">
+      Already a member?
+      <a href="/log-in">Log In</a>
+    </p>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
